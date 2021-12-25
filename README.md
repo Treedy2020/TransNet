@@ -95,7 +95,7 @@ outdoor | 1/64 | -2.62 | 33.75M
 
 
 
-As aforementioned, we can not provide model checkpoints for the results temporarily. We will improve this in the next version of the code, sorry for the time being you need to train your TransNet to test its performance.
+As aforementioned, we can not provide model checkpoints for the results temporarily. We will improve this in the next version of our codes, sorry for the time being you need to train your TransNet to test its performance.
 
 
 
