@@ -20,7 +20,7 @@ You can generate your own dataset according to the [open source library of COST2
 
 #### B. Checkpoints Downloading
 
-We appologize for that due to the oversight of our earlier experiments, we didn't save the complete Checkpoints results, and some problems happen when loading the pretrained model from the current version of implementation. We will improve this part in the next version. But you can still check the authenticity of our results by training a new TransNet yourself and see its performance, a 400 epochs training will not take very long, you can reproduce any result in our Table 1.
+We appologize for that due to the oversight of our earlier experiments, we didn't save the complete Checkpoints results, and some problems happen when loading the pretrained model from the current version of implementation. We will improve this part in the next version. But you can still check the authenticity of our results by training a new TransNet yourself and see its performance, a 400 epochs training will not take very long, you can reproduce any result in  Table 1 of our paper.
 
 #### C. Project Tree Arrangement
 
