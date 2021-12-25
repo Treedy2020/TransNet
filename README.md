@@ -104,5 +104,5 @@ As aforementioned, we can not provide model checkpoints for the results temporar
 Thank Chao-Kai Wen and Shi Jin group again for providing the pre-processed COST2100 dataset, you can find their related work named CsiNet in [Github-Python_CsiNet](https://github.com/sydney222/Python_CsiNet) 
 
 
-Thanks two open source works, CRNet and CLNet, that build on work above and advance the CSI feedback problem in DL, you can find their related work in [CRNet](https://github.com/Kylin9511/CRNet) and [CLNet](https://github.com/SIJIEJI/CLNet)
+Thanks two open source works, CRNet and CLNet, that build on work above and advance the CSI feedback problem in DL, you can find their related work in [Github-Python-PyTorch CRNet](https://github.com/Kylin9511/CRNet) and [Github-Python-PyTorch CLNet](https://github.com/SIJIEJI/CLNet)
 
