@@ -1,6 +1,6 @@
 ## Overview
 
-This is the PyTorch implementation of paper [Multi-resolution CSI Feedback with deep learning in Massive MIMO System](https://arxiv.org/abs/1910.14322).
+This is the PyTorch implementation of paper "TransNet: Full Attention Network for CSI Feedback in FDD Massive MIMO System".
 
 ## Requirements
 
@@ -20,7 +20,7 @@ You can generate your own dataset according to the [open source library of COST2
 
 #### B. Checkpoints Downloading
 
-The model checkpoints should be downloaded if you would like to reproduce our result. All the checkpoints files can be downloaded from [Baidu Netdisk](https://pan.baidu.com/s/1evKXkcF2Qp8Wn6cWJQiYQw) or [Google Drive](https://drive.google.com/drive/folders/16hQsrxkFuyjtmW4DOI8-Tix5TP5JfIia?usp=sharing)
+We appologize for that due to the oversight of our earlier experiments, we didn't save the complete Checkpoints results, and some problems happen when loading the pretrained model from the current version of implementation. We will improve this part in the next version. But you can still check the authenticity of our results by training a new TransNet yourself and see its performance, a 400 epochs training will not take very long, you can reproduce any result in our Table 1.
 
 #### C. Project Tree Arrangement
 
@@ -28,7 +28,7 @@ We recommend you to arrange the project tree as follows.
 
 ```
 home
-├── CRNet  # The cloned CRNet repository
+├── TransNet  # The cloned TransNet repository
 │   ├── dataset
 │   ├── models
 │   ├── utils
@@ -38,64 +38,69 @@ home
 │   ├── ...
 ├── Experiments
 │   ├── checkpoints  # The checkpoints folder
-│   │     ├── in_04.pth
+│   │     ├── in04.pth
 │   │     ├── ...
 │   ├── run.sh  # The bash script
 ...
 ```
 
-## Train CRNet from Scratch
+## Train TransNet from Scratch
 
-An example of run.sh is listed below. Simply use it with `sh run.sh`. It will start advanced scheme aided CRNet training from scratch. Change scenario using `--scenario` and change compression ratio with `--cr`.
+An example of run.sh is listed below. Simply use it with `sh run.sh`. It will start  TransNet training from scratch. Change scenario by using `--scenario` . Change training epochs with '--epochs' and compression ratio with `--cr`.
 
 ``` bash
-python /home/CRNet/main.py \
+python /home/TransNet/main.py \
   --data-dir '/home/COST2100' \
   --scenario 'in' \
-  --epochs 2500 \
+  --epochs 400 \
   --batch-size 200 \
   --workers 0 \
   --cr 4 \
-  --scheduler cosine \
+  --scheduler const \
   --gpu 0 \
   2>&1 | tee log.out
 ```
 
 ## Results and Reproduction
 
-The main results reported in our paper are presented as follows. All the listed results can be found in Table1 of our paper. They are achieved from training CRNet with our advanced training scheme (cosine annealing scheduler with warm up for 2500 epochs).
+The main results reported in our paper are presented as follows. All the listed results can be found in Table1 of our paper. They are achieved from training TransNet with our  2 kind of training scheme ( constant learning rate at 1e-4 for 400/2500 epochs).
+
+Results of 400 epochs
+Scenario | Compression Ratio | NMSE | Flops
+:--: | :--: | :--: | :--: 
+indoor | 1/4 | -29.22 | 35.72M 
+indoor | 1/8 | -21.62 | 34.70M 
+indoor | 1/16 | -14.98 | 34.14M 
+indoor | 1/32 | -9.83 | 33.88M 
+indoor | 1/64 | -6.05 | 33.75M 
+outdoor | 1/4 | -13.99 | 35.72M 
+outdoor | 1/8 | -9.57 | 34.70M 
+outdoor | 1/16 | -6.90 | 34.14M 
+outdoor | 1/32 | -3.30 | 33.88M 
+outdoor | 1/64 | -2.20 | 33.75M 
+
+Results of 2500 epochs
+Scenario | Compression Ratio | NMSE | Flops
+:--: | :--: | :--: | :--: 
+indoor | 1/4 | -33.12 | 35.72M 
+indoor | 1/8 | -22.91 | 34.70M 
+indoor | 1/16 | -15.00 | 34.14M 
+indoor | 1/32 | -10.49 | 33.88M 
+indoor | 1/64 | -6.66 | 33.75M 
+outdoor | 1/4 | -14.86 | 35.72M 
+outdoor | 1/8 | -9.99 | 34.70M 
+outdoor | 1/16 | -7.82 | 34.14M 
+outdoor | 1/32 | -4.42 | 33.88M 
+outdoor | 1/64 | -2.62 | 33.75M 
 
 
-Scenario | Compression Ratio | NMSE | Flops | Checkpoints
-:--: | :--: | :--: | :--: | :--:
-indoor | 1/4 | -26.99 | 5.12M | in_04.pth
-indoor | 1/8 | -16.01 | 4.07M | in_08.pth
-indoor | 1/16 | -11.35 | 3.55M | in_16.pth
-indoor | 1/32 | -8.93 | 3.28M | in_32.pth
-indoor | 1/64 | -6.49 | 3.16M | in_64.pth
-outdoor | 1/4 | -12.70 | 5.12M | out_04.pth
-outdoor | 1/8 | -8.04 | 4.07M | out_08.pth
-outdoor | 1/16 | -5.44 | 3.55M | out_16.pth
-outdoor | 1/32 | -3.51 | 3.28M | out_32.pth
-outdoor | 1/64 | -2.22 | 3.16M | out_64.pth
 
-As aforementioned, we provide model checkpoints for all the results. Our code library supports easy inference. 
+As aforementioned, we can not provide model checkpoints for the results temporarily. We will improve this in the next version of the code, sorry for the time being you need to train your TransNet to test its performance.
 
-**To reproduce all these results, simple add `--evaluate` to `run.sh` and pick the corresponding pre-trained model with `--pretrained`.** An example is shown as follows.
 
-``` bash
-python /home/CRNet/main.py \
-  --data-dir '/home/COST2100' \
-  --scenario 'in' \
-  --pretrained './checkpoints/in_04' \
-  --evaluate \
-  --batch-size 200 \
-  --workers 0 \
-  --cr 4 \
-  --cpu \
-  2>&1 | tee log.out
-```
 
 ## Acknowledgment
 
 Thank Chao-Kai Wen and Shi Jin group again for providing the pre-processed COST2100 dataset, you can find their related work named CsiNet in [Github-Python_CsiNet](https://github.com/sydney222/Python_CsiNet) 
+Thanks two open source works, CRNet and CLNet, that build on work above and advance the CSI feedback problem in DL, you can find their related work in [CRNet](https://github.com/Kylin9511/CRNet) and [CLNet](https://github.com/SIJIEJI/CLNet)
+
