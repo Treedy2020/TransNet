@@ -20,7 +20,7 @@ You can generate your own dataset according to the [open source library of COST2
 
 #### B. Checkpoints Downloading
 
-We appologize for that due to the oversight of our earlier experiments, we didn't save the complete Checkpoints results, and some problems happen when loading the pretrained model from the current version of implementation. We will improve this part in the next version. You can still check the authenticity of our results by training a new TransNet yourself and see its performance, a 400 epochs training dosen't take very long (about 3 and half hours on a single RTX 2060), and you are able to reproduce any results in  Table 1 of our paper.
+We appologize for that due to the oversight of our earlier experiments, we didn't save the complete Checkpoints results, and some problems happen when loading the pretrained model from the current version of implementation. We will improve this part in the next version. You can still check the authenticity of our results by training a new TransNet yourself and see its performance, the test NMSE and training MSE loss will be printed during your training. A 400 epochs training dosen't take very long (about 3 and half hours on a single RTX 2060), and you are able to reproduce any results in  Table 1 of our paper.
 
 #### C. Project Tree Arrangement
 
