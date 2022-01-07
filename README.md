@@ -23,6 +23,8 @@ You can generate your own dataset according to the [open source library of COST2
 
 We appologize for that due to the oversight of our earlier experiments, we didn't save the complete Checkpoints results, we will upload our checkpoints under different scenarios in [Google Drive](https://drive.google.com/drive/folders/10AxRFCE1Nbiqc0JgcFdQZ8mxQV8YbR8F?usp=sharing) as soon as possible.  You can still check the authenticity of our results by training a new TransNet yourself and see its performance, the test NMSE and training MSE loss will be printed during your training. A 400 epochs training dosen't take very long (about 3 and half hours on a single RTX 2060), and you are able to reproduce any results in  Table 1 of our paper.
 
+
+
 #### C. Project Tree Arrangement
 
 We recommend you to arrange the project tree as follows.
@@ -94,9 +96,23 @@ outdoor | 1/16 | -7.82 | 34.14M
 outdoor | 1/32 | -4.42 | 33.88M 
 outdoor | 1/64 | -2.62 | 33.75M 
 
+**To reproduce all these results, simple add `--evaluate` to `run.sh` and pick the corresponding pre-trained model with `--pretrained`.** An example is shown as follows.
 
+``` bash
+python /home/TransNet/main.py \
+  --data-dir '/home/COST2100' \
+  --scenario 'in' \
+  --pretrained './checkpoints/cr4_in.pth' \
+  --evaluate \
+  --batch-size 200 \
+  --workers 0 \
+  --cr 4 \
+  --cpu \
+  2>&1 | tee test_log.out
 
-As aforementioned, we can not provide model checkpoints for the results temporarily. We will improve this in the next version of our codes, sorry for the time being you need to train your TransNet to test its performance.
+```
+
+As aforementioned, we can not provide complete model checkpoints for the results temporarily. We will improve this in the next version of our codes, sorry for the time being you need to train your TransNet to test its performance.
 
 
 
