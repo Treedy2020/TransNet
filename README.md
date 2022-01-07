@@ -96,7 +96,7 @@ outdoor | 1/16 | -7.82 | 34.14M
 outdoor | 1/32 | -4.42 | 33.88M 
 outdoor | 1/64 | -2.62 | 33.75M 
 
-**To reproduce all these results, simple add `--evaluate` to `run.sh` and pick the corresponding pre-trained model with `--pretrained`.** An example is shown as follows.
+**To reproduce all these results, simplely add `--evaluate` to `run.sh` and pick the corresponding pre-trained model with `--pretrained`.** An example is shown as follows.
 
 ``` bash
 python /home/TransNet/main.py \
