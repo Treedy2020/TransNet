@@ -21,7 +21,7 @@ You can generate your own dataset according to the [open source library of COST2
 
 #### B. Checkpoints Downloading
 
-We appologize for that due to the oversight of our earlier experiments, we didn't save the complete Checkpoints results, you can check  the performance of indoor scenarios by downloading checkpoints in [Google Drive](https://drive.google.com/drive/folders/10AxRFCE1Nbiqc0JgcFdQZ8mxQV8YbR8F?usp=sharing) and we will upload our  checkpoints for outdoor scenarios in three days. We support more detail checpoints in  [Google Drive](https://drive.google.com/drive/folders/10AxRFCE1Nbiqc0JgcFdQZ8mxQV8YbR8F?usp=sharing).
+We appologize for that due to the oversight of our earlier experiments, we didn't save the complete Checkpoints results, you can check  the performance of indoor scenarios by downloading checkpoints in [Google Drive](https://drive.google.com/drive/folders/1eoxryQfrMOPVtbiMRdxXtp5KsBt13-hI?usp=sharing) and we will upload our  checkpoints for outdoor scenarios in three days. We support more detail checpoints in  [Google Drive](https://drive.google.com/drive/folders/10AxRFCE1Nbiqc0JgcFdQZ8mxQV8YbR8F?usp=sharing).
 
 You can also check the authenticity of our results by training a new TransNet yourself and see its performance, the test NMSE and training MSE loss will be printed during your training. A 400 epochs training dosen't take very long (about 3 and half hours on a single RTX 2060), and you are able to reproduce any results in  Table 1 of our paper.
 
