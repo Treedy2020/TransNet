@@ -21,7 +21,9 @@ You can generate your own dataset according to the [open source library of COST2
 
 #### B. Checkpoints Downloading
 
-We appologize for that due to the oversight of our earlier experiments, we didn't save the complete Checkpoints results, you can check  the performance of indoor scenarios now and we will upload our  checkpoints for outdoor scenarios in [Google Drive](https://drive.google.com/drive/folders/10AxRFCE1Nbiqc0JgcFdQZ8mxQV8YbR8F?usp=sharing) in one week.  You can also check the authenticity of our results by training a new TransNet yourself and see its performance, the test NMSE and training MSE loss will be printed during your training. A 400 epochs training dosen't take very long (about 3 and half hours on a single RTX 2060), and you are able to reproduce any results in  Table 1 of our paper.
+We appologize for that due to the oversight of our earlier experiments, we didn't save the complete Checkpoints results, you can check  the performance of indoor scenarios by downloading checkpoints in  [Google Drive] (https://drive.google.com/drive/folders/10AxRFCE1Nbiqc0JgcFdQZ8mxQV8YbR8F?usp=sharing) and we will upload our  checkpoints for outdoor scenarios in three days. We support more detail checpoints in [Google Drive](https://drive.google.com/drive/folders/10AxRFCE1Nbiqc0JgcFdQZ8mxQV8YbR8F?usp=sharing).
+
+You can also check the authenticity of our results by training a new TransNet yourself and see its performance, the test NMSE and training MSE loss will be printed during your training. A 400 epochs training dosen't take very long (about 3 and half hours on a single RTX 2060), and you are able to reproduce any results in  Table 1 of our paper.
 
 
 
@@ -41,7 +43,7 @@ home
 │   ├── ...
 ├── Experiments
 │   ├── checkpoints  # The checkpoints folder
-│   │     ├── in04.pth
+│   │     ├── 4_in.pth
 │   │     ├── ...
 │   ├── run.sh  # The bash script
 ...
@@ -66,7 +68,7 @@ python /home/TransNet/main.py \
 
 ## Results and Reproduction
 
-The main results reported in our paper are presented as follows. All the listed results can be found in Table1 of our paper. They are achieved from training TransNet with our  2 kind of training scheme ( constant learning rate at 1e-4 for 400/2500 epochs).
+The main results reported in our paper are presented as follows. All the listed results can be found in Table1 of our paper. They are achieved from training TransNet with our  2 kind of training scheme (constant learning rate at 1e-4 for 400/2500 epochs).
 
 Results of 400 epochs
 Scenario | Compression Ratio | NMSE | Flops
@@ -102,11 +104,11 @@ outdoor | 1/64 | -2.62 | 33.75M
 python /home/TransNet/main.py \
   --data-dir '/home/COST2100' \
   --scenario 'in' \
-  --pretrained './checkpoints/cr4_in.pth' \
+  --pretrained './checkpoints/4_in.pth' \
   --evaluate \
   --batch-size 200 \
   --workers 0 \
-  --cr 4 \
+  --cr 4\ # Note that cr should be same as  checkpoints
   --cpu \
   2>&1 | tee test_log.out
 
