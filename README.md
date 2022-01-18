@@ -75,25 +75,25 @@ indoor | 1/4 | -29.22 | 35.72M
 indoor | 1/8 | -21.62 | 34.70M 
 indoor | 1/16 | -14.98 | 34.14M 
 indoor | 1/32 | -9.83 | 33.88M 
-indoor | 1/64 | -6.05 | 33.75M 
+indoor | 1/64 | -5.77 | 33.75M 
 outdoor | 1/4 | -13.99 | 35.72M 
 outdoor | 1/8 | -9.57 | 34.70M 
 outdoor | 1/16 | -6.90 | 34.14M 
-outdoor | 1/32 | -3.30 | 33.88M 
+outdoor | 1/32 | -3.77 | 33.88M 
 outdoor | 1/64 | -2.20 | 33.75M 
 
 Results of 2500 epochs
 Scenario | Compression Ratio | NMSE | Flops
 :--: | :--: | :--: | :--: 
-indoor | 1/4 | -33.12 | 35.72M 
+indoor | 1/4 | -32.38 | 35.72M 
 indoor | 1/8 | -22.91 | 34.70M 
 indoor | 1/16 | -15.00 | 34.14M 
 indoor | 1/32 | -10.49 | 33.88M 
-indoor | 1/64 | -6.66 | 33.75M 
+indoor | 1/64 | -6.08 | 33.75M 
 outdoor | 1/4 | -14.86 | 35.72M 
 outdoor | 1/8 | -9.99 | 34.70M 
 outdoor | 1/16 | -7.82 | 34.14M 
-outdoor | 1/32 | -4.42 | 33.88M 
+outdoor | 1/32 | -4.13 | 33.88M 
 outdoor | 1/64 | -2.62 | 33.75M 
 
 **To reproduce all these results, simplely add `--evaluate` to `run.sh` and pick the corresponding pre-trained model with `--pretrained`.** An example is shown as follows.
