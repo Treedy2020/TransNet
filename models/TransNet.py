@@ -139,14 +139,10 @@ def _in_projection_packed(
     b: Optional[Tensor] = None,
 ) -> List[Tensor]:
     E = q.size(-1)
-    # 若为自注意，则q = k = v = src，因此它们的引用变量都是src
-    # 即k is v和q is k结果均为True
-    # 若为seq2seq，k = v，因而k is v的结果是True
     if k is v:
         if q is k:
             return F.linear(q, w, b).chunk(3, dim=-1)
         else:
-            # seq2seq模型
             w_q, w_kv = w.split([E, E * 2])
             if b is None:
                 b_q = b_kv = None
