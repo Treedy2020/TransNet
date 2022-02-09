@@ -133,5 +133,5 @@ Thank Chao-Kai Wen and Shi Jin group again for providing the pre-processed COST2
 
 Thanks two open source works, CRNet and CLNet, that build on work above and advance the CSI feedback problem in DL, you can find their related work in [Github-Python-PyTorch CRNet](https://github.com/Kylin9511/CRNet) and [Github-Python-PyTorch CLNet](https://github.com/SIJIEJI/CLNet)
 
-Thanks  the Github project members for the open source [Transformer tutorial] (https://github.com/datawhalechina/Learn-NLP-with-Transformers) , our base model for TransNet is based on their work.  
+Thanks  the Github project members for the open source [Transformer tutorial](https://github.com/datawhalechina/Learn-NLP-with-Transformers), our base model for TransNet is based on their work.  
 
