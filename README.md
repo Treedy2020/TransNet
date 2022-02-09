@@ -1,7 +1,18 @@
 ## Overview
 
-This is the PyTorch implementation of paper "TransNet: Full Attention Network for CSI Feedback in FDD Massive MIMO System".
-
+This is the PyTorch implementation of paper "TransNet: Full Attention Network for CSI Feedback in FDD Massive MIMO System"(https://ieeexplore.ieee.org/document/9705497/keywords#keywords)
+You can cite our  paper by
+'''
+@ARTICLE{9705497,
+  author={Cui, Yaodong and Guo, Aihuang and Song, Chunlin},
+  journal={IEEE Wireless Communications Letters}, 
+  title={TransNet: Full Attention Network for CSI Feedback in FDD Massive MIMO System}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={1-1},
+  doi={10.1109/LWC.2022.3149416}
+'''
 ## Requirements
 
 To use this project, you need to ensure the following requirements are installed.
@@ -82,7 +93,7 @@ outdoor | 1/16 | -6.90 | 34.14M
 outdoor | 1/32 | -3.77 | 33.88M 
 outdoor | 1/64 | -2.20 | 33.75M 
 
-Results of 2500 epochs
+Results of 1000 epochs
 Scenario | Compression Ratio | NMSE | Flops
 :--: | :--: | :--: | :--: 
 indoor | 1/4 | -32.38 | 35.72M 
@@ -121,4 +132,6 @@ Thank Chao-Kai Wen and Shi Jin group again for providing the pre-processed COST2
 
 
 Thanks two open source works, CRNet and CLNet, that build on work above and advance the CSI feedback problem in DL, you can find their related work in [Github-Python-PyTorch CRNet](https://github.com/Kylin9511/CRNet) and [Github-Python-PyTorch CLNet](https://github.com/SIJIEJI/CLNet)
+
+Thanks  the Github project members for the open source [Transformer tutorial] (https://github.com/datawhalechina/Learn-NLP-with-Transformers) , our base model for TransNet is based on their work.  
 
