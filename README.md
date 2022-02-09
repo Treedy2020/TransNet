@@ -1,8 +1,8 @@
 ## Overview
 
-This is the PyTorch implementation of paper "TransNet: Full Attention Network for CSI Feedback in FDD Massive MIMO System"(https://ieeexplore.ieee.org/document/9705497/keywords#keywords). You can cite our  paper by
+This is the PyTorch implementation of paper "TransNet: Full Attention Network for CSI Feedback in FDD Massive MIMO System"(https://ieeexplore.ieee.org/document/9705497/keywords#keywords). You can cite our  paper by:
 
-'''
+```
 @ARTICLE{9705497,
   author={Cui, Yaodong and Guo, Aihuang and Song, Chunlin},
   journal={IEEE Wireless Communications Letters}, 
@@ -12,7 +12,7 @@ This is the PyTorch implementation of paper "TransNet: Full Attention Network fo
   number={},
   pages={1-1},
   doi={10.1109/LWC.2022.3149416}
-'''
+```
 ## Requirements
 
 To use this project, you need to ensure the following requirements are installed.
