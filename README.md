@@ -18,7 +18,7 @@ This is the PyTorch implementation of paper "TransNet: Full Attention Network fo
 To use this project, you need to ensure the following requirements are installed.
 
 - Python >= 3.7
-- [PyTorch >= 1.2](https://pytorch.org/get-started/locally/)
+- [1.2 =< PyTorch <= 1.6](https://pytorch.org/get-started/locally/)
 - [thop](https://github.com/Lyken17/pytorch-OpCounter)
 - [tensorboardX](https://github.com/lanpa/tensorboardX)
 
