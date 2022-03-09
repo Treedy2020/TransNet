@@ -77,7 +77,7 @@ python /home/TransNet/main.py \
 
 ## Results and Reproduction
 
-The main results reported in our paper are presented as follows. All the listed results can be found in Table1 of our paper. They are achieved from training TransNet with our  2 kind of training scheme (constant learning rate at 1e-4 for 400/2500 epochs).
+The main results reported in our paper are presented as follows. All the listed results can be found in Table1 of our paper. They are achieved from training TransNet with our  2 kind of training scheme (constant learning rate at 1e-4 for 400/1000 epochs).
 
 Results of 400 epochs
 Scenario | Compression Ratio | NMSE | Flops
