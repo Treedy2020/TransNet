@@ -14,7 +14,6 @@ def main():
 
     # Create the data loader
 
-    #用Cost2100DataLoader加载数据，train_loader 为训练数据加载器，test_loader为测试数据加载器
     train_loader, val_loader, test_loader = Cost2100DataLoader(
         root=args.data_dir,
         batch_size=args.batch_size,
@@ -23,7 +22,7 @@ def main():
         scenario=args.scenario)()
 
     # Define model
-    # 用args的参数初始化模型，给定数据集COST2100，批量数据集大小batch_size，场景scenario
+ 
     model = init_model(args)
     model.to(device)
 
@@ -36,13 +35,13 @@ def main():
         return
 
     # Define optimizer and scheduler
-    #学习速率初始化
+   
     lr_init = 1e-4 if args.scheduler == 'const' else 2e-3
     optimizer = torch.optim.Adam(model.parameters(), lr_init)
 
     if args.scheduler == 'const':
         scheduler = FakeLR(optimizer=optimizer)
-        # 学习速率的初始化方法
+        
     else:
         scheduler = WarmUpCosineAnnealingLR(optimizer=optimizer,
                                             T_max=args.epochs * len(train_loader),
@@ -50,7 +49,7 @@ def main():
                                             eta_min=5e-5)
 
     # Define the training pipeline
-    # 训练器部分：模型，硬件设备，优化器，标准
+    
     trainer = Trainer(model=model,
                       device=device,
                       optimizer=optimizer,
