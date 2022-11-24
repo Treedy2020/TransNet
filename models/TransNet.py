@@ -16,12 +16,6 @@ __all__ = ["transnet"]
 Tensor = torch.Tensor
 
 
-def positional_encoding(X, num_features, dropout_p=0.1, max_len=512) -> Tensor:
-    num_features_ = num_features
-    max_len_ = max_len
-    dropout = nn.Dropout(dropout_p)
-    return X
-
 def scale_dot_attention(
        q:Tensor,
        k:Tensor,
@@ -257,7 +251,6 @@ class TransformerEncoderLayer(nn.Module):
 
     def forward(self, src: Tensor, src_mask: Optional[Tensor] = None,
                 src_key_padding_mask: Optional[Tensor] = None) -> Tensor:
-        src = positional_encoding(src, src.shape[-1])
         src2 = self.self_attn(src, src, src, attn_mask=src_mask,
                               key_padding_mask=src_key_padding_mask)[0]
         src = src + self.dropout1(src2)
@@ -278,7 +271,7 @@ class TransformerEncoder(nn.Module):
 
     def forward(self, src: Tensor, mask: Optional[Tensor] = None,
                 src_key_padding_mask: Optional[Tensor] = None) -> Tensor:
-        output = positional_encoding(src, src.shape[-1])
+        output = src
         for _ in range(self.num_layers):
             output = self.layer(output, src_mask=mask, src_key_padding_mask=src_key_padding_mask)
 
