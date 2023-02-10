@@ -42,7 +42,7 @@ def init_device(seed=None, cpu=None, gpu=None, affinity=None):
 
 def init_model(args):
     # Model loading
-    model = transnet(reduction=args.cr)
+    model = transnet(reduction=args.cr, d_model=args.d_model)
 
     if args.pretrained is not None:
         assert os.path.isfile(args.pretrained)

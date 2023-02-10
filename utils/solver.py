@@ -71,10 +71,10 @@ class Trainer:
 
             if ep % self.test_freq == 0:
                 self.test_loss, rho, nmse = self.test(test_loader)
-                vision_test.add_scalar("test loss",self.test_loss,global_step=ep)
+                vision_test.add_scalar("test loss", self.test_loss, global_step=ep)
                 vision_test.add_scalar("test rho", rho, global_step=ep)
-                vision_test.add_scalar("test nmse",nmse,global_step=ep)
-                vision_test.add_scalar("train loss",self.train_loss,global_step=ep)
+                vision_test.add_scalar("test nmse", nmse, global_step=ep)
+                vision_test.add_scalar("train loss", self.train_loss, global_step=ep)
             else:
                 rho, nmse = None, None
 
@@ -214,8 +214,8 @@ class Trainer:
                   f'\n   Best NMSE: {self.best_nmse.nmse:.3e} ('
                   f'Corresponding rho={self.best_nmse.rho:.3e};  '
                   f'epoch={self.best_nmse.epoch})\n')
-            vision_best.add_scalar(" best rho ",self.best_rho.rho,global_step=self.best_rho.epoch)
-            vision_best.add_scalar(" best MSE ", self.best_nmse.nmse,global_step=self.best_nmse.epoch)
+            vision_best.add_scalar(" best rho ",self.best_rho.rho, global_step=self.best_rho.epoch)
+            vision_best.add_scalar(" best MSE ", self.best_nmse.nmse, global_step=self.best_nmse.epoch)
 
 
 

@@ -38,6 +38,7 @@ parser.add_argument('--epochs', type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('--cr', metavar='N', type=int, default=4,
                     help='compression ratio')
+parser.add_argument('-d', '--d_model', type=int, default=64, metavar= 'N', help= 'number of Transformer feature dimension.' )
 parser.add_argument('--scheduler', type=str, default='const', choices=['const', 'cosine'],
                     help='learning rate scheduler')
 

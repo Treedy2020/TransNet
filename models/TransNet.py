@@ -27,7 +27,6 @@ def scale_dot_attention(
     _,_,E = q.shape
     q = q / math.sqrt(E)
     attn = torch.bmm(q,k.transpose(-2,-1))
-    # (B,N_target,N_impressed)X(B,N_impressed,N_source)= (B,N_target,N_scource)
     if attn_mask is not None:
         attn = attn + attn_mask
     attn = F.softmax(attn,dim =-1)
@@ -344,12 +343,11 @@ class TransformerDecoder(nn.Module):
 
 class Transformer(nn.Module):
 
-    def __init__(self, d_model: int = 512, nhead: int = 8, num_encoder_layers: int = 6,
+    def __init__(self, d_model: int = 64, nhead: int = 8, num_encoder_layers: int = 6,
                  num_decoder_layers: int = 6, dim_feedforward: int = 2048, dropout: float = 0.1,
                  activation = F.relu, custom_encoder: Optional[Any] = None, custom_decoder: Optional[Any] = None,
-                 layer_norm_eps: float = 1e-5, batch_first: bool = False,reduction=64) -> None:
+                 layer_norm_eps: float = 1e-5, batch_first: bool = False,  reduction=64) -> None:
         super(Transformer, self).__init__()
-        logger.info(f'reduction = {reduction}')
         if custom_encoder is not None:
             self.encoder = custom_encoder
         else:
@@ -365,27 +363,29 @@ class Transformer(nn.Module):
                                                     activation, layer_norm_eps, batch_first)
             decoder_norm = nn.LayerNorm(d_model, eps=layer_norm_eps)
             self.decoder = TransformerDecoder(decoder_layer, num_decoder_layers, decoder_norm)
-        self._reset_parameters()
-
+        
         self.d_model = d_model
+        
+        assert not (2048 % self.d_model), 'd_model needs to be divisible by the size of the entire csi matrix (2048)'
+        self.feature_shape = (2048//self.d_model, self.d_model)
+        
         self.nhead = nhead
 
         self.batch_first = batch_first
         self.fc_encoder = nn.Linear(2048,2048//reduction)
         self.fc_decoder = nn.Linear(2048//reduction,2048)
-        self.predict = nn.Linear(32,32)
+        self._reset_parameters()
+        
 
     def forward(self, src: Tensor, tgt: Optional[Tensor]=None, src_mask: Optional[Tensor] = None,
                     tgt_mask: Optional[Tensor] = None,
                     memory_mask: Optional[Tensor] = None, src_key_padding_mask: Optional[Tensor] = None,
                     tgt_key_padding_mask: Optional[Tensor] = None,
                     memory_key_padding_mask: Optional[Tensor] = None) -> Tensor:
-           
-            memory = self.encoder(src.view(-1,64,32), mask=src_mask, src_key_padding_mask=src_key_padding_mask)
+            memory = self.encoder(src.view(-1, self.feature_shape[0], self.feature_shape[1]), mask=src_mask, src_key_padding_mask=src_key_padding_mask)
             memory_encoder = self.fc_encoder(memory.view(memory.shape[0],-1))
-            memory_decoder = self.fc_decoder(memory_encoder).view(-1,64,32)
-            predict_target = self.predict(memory_decoder)
-            output = self.decoder(predict_target, memory_decoder, tgt_mask=tgt_mask, memory_mask=memory_mask,
+            memory_decoder = self.fc_decoder(memory_encoder).view(-1, self.feature_shape[0], self.feature_shape[1])
+            output = self.decoder(memory_decoder, memory_decoder, tgt_mask=tgt_mask, memory_mask=memory_mask,
                                   tgt_key_padding_mask=tgt_key_padding_mask,
                                   memory_key_padding_mask=memory_key_padding_mask)
             output = output.view(-1,2,32,32)
@@ -404,12 +404,12 @@ class Transformer(nn.Module):
             if p.dim() > 1:
                 xavier_uniform_(p)
 
-def transnet(reduction=64):
+def transnet(reduction=64, d_model=64):
 
     r""" Create a proposed TransNet.
 
         :param reduction: the reciprocal of compression ratio
         :return: an instance of TransNet
-        """
-    model = Transformer(d_model=32,num_encoder_layers=2,num_decoder_layers=2,nhead=2,reduction =reduction,dropout= 0.)
+    """
+    model = Transformer(d_model=d_model, num_encoder_layers=2, num_decoder_layers=2, nhead=2, reduction =reduction, dropout= 0.)
     return model

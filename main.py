@@ -3,7 +3,7 @@ import torch.nn as nn
 from utils.parser import args
 from utils import logger, Trainer, Tester
 from utils import init_device, init_model, FakeLR, WarmUpCosineAnnealingLR
-from dataset import Cost2100DataLoader
+from dataloader import Cost2100DataLoader
 from tensorboardX import SummaryWriter
 from torchviz import make_dot
 
@@ -36,7 +36,7 @@ def main():
 
     # Define optimizer and scheduler
    
-    lr_init = 1e-4 if args.scheduler == 'const' else 2e-3
+    lr_init = 1e-4 if args.scheduler == 'const' else 2e-4
     optimizer = torch.optim.Adam(model.parameters(), lr_init)
 
     if args.scheduler == 'const':
