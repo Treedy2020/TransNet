@@ -19,11 +19,18 @@ Y. Cui, A. Guo and C. Song, "TransNet: Full Attention Network for CSI Feedback i
 ```
 ## Requirements
 
-To use this project, you need to ensure the following requirements are installed.
+We support a env.yaml in our project, so you can simply run
+```
+conda env create -f environment.yaml
+```
+to get a useable environment. Or manually install and build your own environment, to use this project, you need to ensure the following main requirements are installed.
+
 
 - Python >= 3.7
+- scipy
 - [1.2 =< PyTorch <= 1.6](https://pytorch.org/get-started/locally/)
-- [thop](https://github.com/Lyken17/pytorch-OpCounter)
+- [thop==0.0.31-2005241907](https://github.com/Lyken17/pytorch-OpCounter) Note that the latest version leads to bug.
+- [torchviz](https://github.com/szagoruyko/pytorchviz)
 - [tensorboardX](https://github.com/lanpa/tensorboardX)
 
 ## Project Preparation
@@ -111,7 +118,7 @@ outdoor | 1/16 | -7.82 | 34.14M
 outdoor | 1/32 | -4.13 | 33.88M 
 outdoor | 1/64 | -2.62 | 33.75M 
 
-**To reproduce all these results, simplely add `--evaluate` to `run.sh` and pick the corresponding pre-trained model with `--pretrained`.** An example is shown as follows.
+**To reproduce all these results, simplely add `--evaluate` to `scripts.sh` and pick the corresponding pre-trained model with `--pretrained`.** An example is shown as follows.
 
 ``` bash
 python /home/TransNet/main.py \
